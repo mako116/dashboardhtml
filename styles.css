@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 40;
+    display: none;
+}
+
+/* Show overlay when sidebar is active */
+.overlay.show {
+    display: block;
+}
+
+/* Hide the sidebar text when the sidebar is collapsed */
+.sidebar-text {
+display: inline-block;  
+}
+.sidebar-item a:focus{
+        /* background-color: #EFF0FC;   */
+        /* color: #5C61EB;   */
+        /* width: 100%; */
+        
+        border: 1px solid #DEE0FA;
+        
+     }
+    
+    .sidebar-item {
+     border-radius: 5px;
+     }
+     
+/* When the sidebar is expanded, show the text */
+#sidebar.w-14 .sidebar-text {
+display: none; /* Text is hidden by default */
+
+}
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+.font-nunito {
+    font-family: 'Nunito', sans-serif;
+}
+
+#controls {
+margin-top: 20px;
+}
+button {
+margin-right: 10px;
+padding: 10px 15px;
+border: none;
+background-color: #007bff;
+color: #fff;
+cursor: pointer;
+border-radius: 5px;
+}
+
+ 
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+}
+
+.delete-icon {
+    /* position: absolute; */
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+    color: red;
+    width: 25px;
+  }
+  .delete-icon.visible {
+    display: block;
+  }
+  
+/* Skeleton Loader Animation */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        #e0e0e0 25%,
+        #f0f0f0 50%,
+        #e0e0e0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton.text {
+    height: 20px;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.skeleton.button {
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.bg_card {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(to top , rgb(14, 51, 132),rgb(30, 111, 224) ),url("./assests/bgimage.png");
+}
+.bg_cards {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(to top , rgb(83, 6, 134),rgb(131, 50, 178) ),url("./assests/bgimage.png");
+}
+.bg_car {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(to top , rgb(8, 79, 49),rgb(24, 145, 87) ),url("./assests/bgimage.png");
+}
+.bg_ca {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(to top , rgb(186, 40, 27),rgb(200, 61, 58) ),url("./assests/bgimage.png");
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animation-slide-in {
+    animation: slideIn 1s ease-in-out forwards;
+    animation-delay: 1.10s; /* Adjust delay for the timer */
+}
+
+  /* Custom styles for slider */
+  .slick-dots li button:before {
+    color: #000; /* Gray */
+  }
+  .slick-dots li.slick-active button:before {
+    color: #00A1EA; /* Blue */
+   }
+  .slick-prev  {
+    font-size: 30px;
+    position: absolute;
+    left: 20px;
+    /* color: #000; */
+    /* margin-right: 100px; */
+ display: none; 
+  }
+
+   .slick-next {
+    font-size: 0px;
+    position: absolute;
+    right: 20px;
+    /* color: #000; */
+    /* margin-right: 100px; */
+    /* background-color: #000; */
+    display: none; 
+
+
+  }
+
+  @keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#error {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Optional: Add overflow styling for the container */
+  .scroll-container {
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+    scrollbar-width: none;  /* For Firefox */
+  }

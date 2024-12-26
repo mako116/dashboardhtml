@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+  <!-- Slick Carousel CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex min-h-screen">
+    <!-- Left Section -->
+    <div class="hidden md:flex flex-col justify-center items-center w-1/2 bg-[#fff]  ">
+      <div class="slider w-full flex px-[20px]">
+        <!-- Slider Items -->
+        <div class="text-center text-[#000]">
+          <h2 class="md:text-[32px] md:leading-[38.4px] font-[600] font-poppins  mb-[10px]">Business Account</h2>
+           <dotlottie-player class=" mx-auto " src="https://lottie.host/56261d73-a979-4c22-a5f4-212bb6d5a728/ererJVH93p.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+           <p class="md:text-[20px] leading-[24px] font-[600] my-2 text-[#0A2EE2]">Easy Payments</p>
+           <p class="md:text-[30px] md:leading-[38.4px] font-[600] font-poppins  m-auto w-full md:w-[400px]">Enjoy seamless payment processes.</p>
+ 
+        </div>
+        <div class="text-center text-[#000] ">
+          <h2 class="md:text-[32px] md:leading-[38.4px] font-[600] font-poppins  mb-[10px] text-[#000]">Quick Updates</h2>
+          <dotlottie-player class=" mx-auto "  src="https://lottie.host/f51f7219-3447-459c-bfa1-06b4bbd30e2a/d7pPCSO9Le.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>        
+          <p class="md:text-[20px] leading-[24px] font-[600] my-2  text-[#0A2EE2]">Effortless Updates</p>
+          <p class="md:text-[30px] md:leading-[38.4px] font-[600] font-poppins  m-auto w-full md:w-[500px]">Create and update according to your preferences</p>
+    
+        </div>      
+        <div class="text-center text-[#000]">
+          <h2 class="md:text-[32px] leading-[38.4px] font-[600] font-poppins  mb-[10px] text-[#000]">Guaranteed Experience</h2>
+          <dotlottie-player class=" mx-auto " src="https://lottie.host/1ab1c56b-d7ca-4634-9292-2d20df63b794/MNYkS3YYWp.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>       
+          <p class="md:text-[20px] md:leading-[24px] font-[600] my-2 text-[#0A2EE2]">Easy & Secure</p>
+          <p class="md:text-[30px] md:leading-[38.4px] font-[600] font-poppins  m-auto w-full md:w-[400px]">We guarantee the best experience on our platform.</p> 
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="flex flex-col justify-center items-center w-full md:w-1/2 pb-5">
+ <dotlottie-player class="w-[200px]" src="https://lottie.host/0fc4cbc0-425b-4914-ba14-9e72826d3b4a/As2OA3dMyW.lottie" background="transparent" speed="1"  loop autoplay></dotlottie-player>
+      <!-- <h1 class="text-3xl font-bold text-blue-500">Login</h1> -->
+      <p class="text-gray-600 mt-2 ">Welcome back! Please login to continue.</p>
+      
+      <!-- Form -->
+      <form id="loginForm" class="w-full max-w-sm mt-2">
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-[#333] font-poppins">Email</label>
+          <input id="email" type="email" class="mt-1 block w-full px-4 py-[15px] border border-gray-300 rounded-md shadow-sm outline-none font-nunito" placeholder="Enter your email" required />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-[#333] font-poppins">Password</label>
+          <div class="relative">
+            <input id="password" type="password" class="mt-1 block w-full px-4 py-[15px] border border-gray-300 outline-none font-nunito rounded-md " placeholder="Enter your password" required />
+            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 transition duration-300 ease-in-out transform hover:scale-110">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-[#0A2EE2] text-white rounded-md py-[15px]  font-poppins">Login</button>
+        <p id="error" class="text-red-500 text-sm mt-2 hidden">Invalid credentials, please try again.</p>
+      </form>
+      
+
+      <!-- Additional Links -->
+      <div class="mt-4">
+        <a href="forgottenEmail.html" class="text-blue-500 hover:underline">Forgot Password?</a>
+      </div>
+      <div class="mt-4">
+        <p class="text-gray-600">Don't have an account? <a href="signup.html" class="text-blue-500 hover:underline">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+   <!-- Custom JS for Slider and Form -->
+ <script src="js/login.js"></script>
+</body>
+</html>

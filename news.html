@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs/plugin/quarterOfYear.js"></script>
+
+    <!-- FontAwesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="flex min-h-screen overflow-x-hidden  font-sans bg-[#F5F6FA]">
+  <div id="loading-screen" class="bg-[#fff] w-full h-screen ">
+    <dotlottie-player 
+        src="https://lottie.host/9f018104-7200-4acc-b063-be137822848f/Fc8rX0FSJh.lottie" 
+        background="transparent" 
+        speed="1" 
+        class="w-full h-screen  " 
+        loop 
+        autoplay>
+    </dotlottie-player>
+</div>
+    <!-- Sidebar -->
+    <div id="sidebar" class="bg-[#fff] text-[#212121] fixed left-0 top-0 flex h-screen border w-[250px] z-[999] border-r flex-col scroll-container overflow-x-hidden duration-300 ease-linear lg:translate-x-0 ">
+        <div class="p-4 flex justify-between items-center border-b">
+            <!-- Close Button for Mobile -->
+                 <span class="text-[#212121] font-poppins flex-wrap w-full">Logo</span>
+             <button id="close-btn" class="block md:hidden text-2xl text-gray-400 hover:text-white  ">&times;</button>
+        </div>
+        <div id="main-menu" class="pl-[10px] pt-[10px]">
+            <span class="sidebar-text font-nunito text-[13px]">Main Menu</span>
+        </div>
+        <ul class="space-y-4 font-[600] text-[14px] leading-[19.1px] font-nunito">
+           
+            <li class="sidebar-item">
+                <a href="home.html" class="flex items-center font space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                   <img src="assests/four-circle.png" alt="" class="w-[20px]">
+                    <span class="sidebar-text font-nunito">Dashboard</span>
+                </a>
+            </li>
+           
+            <li class="sidebar-item ">
+                <a href="hotmail&outlook.html" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                    <img src="assests/email.png" alt="" class="w-[20px]">
+                    <span class="sidebar-text">Hotmail & Outlook</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="news.html" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                    <img src="assests/newspaper.png" alt="" class="w-[20px]">
+                    <span class="sidebar-text">News</span>
+                </a>
+            </li>
+            <li class="sidebar-item border-t mt-[125px]">
+                <a href="attachments.html" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                    <img src="assests/join-us.png" alt="" class="w-[20px]">
+                    <span class="sidebar-text">Attachments</span>
+                </a>
+            </li>
+            
+            <li >
+                <a href="#" class="flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px] group" id="pdf-attachment">
+                    <img src="assests/file.png" alt="" class="  w-[20px]  ">
+                    <span class="sidebar-text ">PDF & QR</span>
+                    <!-- Arrow Icon that will appear on hover -->
+                    <!-- <i class="fa fa-arrow-circle-down "></i> -->
+                    <img src="assests/down-chevron.png" alt="" class="  w-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                </a>
+                <!-- Submenu -->
+                <ul class="hidden pl-6 space-y-1 transition-all duration-300 ease-in-out transform scale-y-0 origin-top">
+                    <li>
+                        <a href="Qr.html" class="flex items-center space-x-3  px-[10px] rounded-[5px]">
+                            <img src="assests/period.png" alt="" class="w-[30px] h-[30px]">
+                             <span class="sidebar-text">QR</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pdfAttachment.html" class="flex items-center space-x-3  px-[10px] rounded-[5px]">
+                            <img src="assests/period.png" alt="" class="w-[30px] h-[30px]">
+                             <span class="sidebar-text">PDF Attachment</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3  px-[10px] rounded-[5px]">
+                            <img src="assests/period.png" alt="" class="w-[30px] h-[30px]">
+                            <span class="sidebar-text">Clear All Logs</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class=" w-full absolute bottom-[50px] ">
+                <span  id="mainDash" class="ml-[10px] text-[#878C97] text-[13px]">OTHER</span>
+                <a href="settings.html" class="w-full flex items-center space-x-3 py-[10px] px-[10px] rounded-[5px]">
+                    <span class="material-icons">settings</span>
+                    <span class="sidebar-text">Settings</span>
+                </a>
+            </li>
+            <li class=" w-full absolute bottom-[5px] ">
+                <a href="#" class="w-full text-[#b52424] flex items-center space-x-3 py-[10px] px-[10px] ">
+                    <span class="material-icons">logout</span>
+                    <span class="sidebar-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Overlay (only visible on mobile when sidebar is open) -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main Content -->
+    <div id="content" class="w-full transition-all duration-300 md:ml-[250px] ml-[0px] sm:ml-0">
+
+        <!-- Header -->
+        <header class="w-full bg-white border py-4 px-[20px] flex items-center justify-between">
+            <div class="flex items-center ">
+                <!-- Hamburger Button (Mobile) -->
+                 <button id="hamburger" class="block md:hidden text-2xl text-gray-800">
+                    <span class="material-icons">sort</span>
+                </button>
+
+                <!-- Collapse/Expand Sidebar Button (Desktop) -->
+                <button id="toggle-sidebar" class="text-[#000]   text-xl hidden md:block ">
+                    <!-- <span class="material-icons">menu</span> -->
+                    <img src="assests/collapse.png" alt="" class="w-[20px]">
+                </button>
+ 
+                <!-- Title -->
+                <span class="text-2xl font-semibold ml-4 flex"> News
+                 </span>
+            </div>
+
+            <!-- User Profile & Notifications -->
+            <div class="flex items-center space-x-4">
+                <!-- Notifications Button -->
+                <button class="text-gray-600 hover:text-gray-800">
+                    <!-- <span class="material-icons">notifications</span> -->
+                </button>
+            
+                <!-- Profile Dropdown -->
+                <div class="relative">
+                    <!-- Profile Button -->
+                    <button id="profile-button" class="text-gray-600 hover:text-gray-800">
+                        <!-- <span class="material-icons">account_circle</span> -->
+                    </button>
+            
+                    <!-- Dropdown Menu -->
+                    <div id="profile-dropdown" class=" ">
+                        <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-800">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-800">Logout</a> -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div  class="px-[10px] md:px-[20px] my-[0px]  md:my-[30px] w-full ">
+            <div class="mx-auto   bg-gray-100">
+                <!-- Header Controls -->
+                <div class="flex justify-between items-center    rounded-[5px] px-[23px] py-[5px] my-[10px] md:my-[30px] border-y border-[#EBEBEE] bg-[#fff]">
+                    <h3 class="font-[600]  text-[#373535] md:text-[26px]  leading-[20px] ">Upcoming News</h3>
+                     <dotlottie-player src="https://lottie.host/9468866f-f3bf-4b26-a558-cedf29582dc8/pGFA9LOk4D.lottie" background="transparent" speed="1" class="w-[30px] md:w-[80px]" loop autoplay></dotlottie-player>
+                 </div>
+                 
+                <div class="flex justify-between items-center mb-4">
+                  <!-- Show Rows Dropdown -->
+                  <div class="flex items-center gap-2">
+                    <label for="rows-per-page" class="text-gray-700 font-medium">Show</label>
+                    <select
+                      id="rows-per-page"
+                      class="w-[50px] px-2 py-1 border border-gray-300 rounded-md"
+                      onchange="updateTable()"
+                    >
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                    </select>
+                    <label for="rows-per-page" class="text-gray-700 font-medium">entries</label>
+                  </div>
+              
+                  <!-- Search Bar -->
+                  <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 md:p-4 ">
+                    <!-- Search Label -->
+                    <label for="search" class="text-gray-700 font-medium   mb-2 sm:mb-0 sm:text-left">Search</label>
+                  
+                    <!-- Search Input -->
+                    <div class="flex items-center w-full sm:w-64 space-x-2">
+                      <input
+                        type="text"
+                        id="search"
+                        placeholder="Search..."
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md  placeholder-gray-500 text-sm sm:text-base outline-none"
+                        oninput="updateTable()"
+                      />
+                    </div>
+                  </div>
+                  
+                </div>
+              
+                <!-- Table -->
+                <div class="overflow-x-auto bg-white rounded-lg px-[10px] pt-[10px]">
+                    <table class="w-full border-collapse px-[10px] rounded-[40px]">
+                      <thead class="text-[#212121]  ">
+                        <tr class="bg-[#f7f6f6] rounded-[10px]">
+                          <th class="py-2 pl-[15px] text-left ">
+                            <input type="checkbox" id="select-all"  onclick="toggleSelectAll()">
+                          </th>
+                          <th class="py-2  text-left md:w-[60px] px-[20px]">#</th>
+                          <th class="py-2 px-[20px] text-start border-x">Text</th>
+                          <th class="py-2 px-[20px] md:w-[200px] text-end flex justify-end gap-[20px]">Date
+                            <dotlottie-player id="delete-icon" class="delete-icon" onclick="deleteSelectedRows()" src="https://lottie.host/640abf1f-285a-4098-a2c6-1b64e9486273/MKW01cfBqG.lottie" background="transparent" speed="1"  loop autoplay></dotlottie-player>    
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="table-body" class="text-gray-700 transition-all ">
+                        <!-- Table rows will be dynamically populated -->
+                      </tbody>
+                    </table>
+                  </div>
+              
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-4 px-4">
+                    <!-- Page Info -->
+                    <span id="page-info" class="text-gray-700 font-medium"> </span>
+                  
+                    <!-- Pagination Controls -->
+                    <div class="flex items-center space-x-2">
+                      <!-- Previous Button -->
+                      <button
+                        id="prev-button"
+                        class="px-4 py-2 text-sm text-[#212121] font-[500] rounded-md  disabled:opacity-50 "
+                        onclick="prevPage()"
+                        disabled
+                      >
+                        Previous
+                      </button>
+                  
+                      <!-- Page Buttons -->
+                      <div id="page-buttons" class="flex space-x-1">
+                        <!-- Page buttons will be dynamically populated -->
+                      </div>
+                  
+                      <!-- Next Button -->
+                      <button
+                        id="next-button"
+                        class="px-4 py-2 text-sm font-[500] bg-[#f4f3f] text-[#212121] rounded-md disabled:opacity-50  "
+                        onclick="nextPage()"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                  
+              
+                <!-- Pagination Controls (Previous and Next) -->
+               
+              </div>
+              
+        </div>
+
+    <!-- Script -->
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/news.paginationTable.js"></script>
+
+     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+     <script src="js/LoadingScreen.js"></script>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
+
+</body>
+
+</html>
