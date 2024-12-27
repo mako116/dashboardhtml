@@ -40,7 +40,7 @@ function toggleDropdowns(dropdownId) {
     dropdown.classList.toggle('scale-100');
   }
 
-  function selectOption(option) {
+  function selectOpt(option) {
     // Update the dropdown label with the selected option
     document.getElementById('dropdown-labels').textContent = option;
 
@@ -57,7 +57,7 @@ function toggleDrop(dropdownId) {
     dropdown.classList.toggle('scale-100');
   }
 
-  function selectOption(option) {
+  function selectOptioning(option) {
     // Update the dropdown label with the selected option
     document.getElementById('dropdown-labelss').textContent = option;
 
@@ -75,7 +75,7 @@ function toggleDro(dropdownId) {
     dropdown.classList.toggle('scale-100');
   }
 
-  function selectOption(option) {
+  function selectOptionin(option) {
     // Update the dropdown label with the selected option
     document.getElementById('dropdown-lab').textContent = option;
 
@@ -92,7 +92,7 @@ function toggleDro(dropdownId) {
     dropdown.classList.toggle('scale-100');
   }
 
-  function selectOption(option) {
+  function selectOptioned(option) {
     // Update the dropdown label with the selected option
     document.getElementById('dropdown-la').textContent = option;
 
@@ -121,18 +121,18 @@ if (urls.length > maxLength) {
 
 
 
-//   password text
-function toggl(dropdownId) {
+//   aniti bot
+function toggls(dropdownId) {
     const dropdown = document.getElementById(dropdownId);
     dropdown.classList.toggle('hidden');
     dropdown.classList.toggle('opacity-100');
     dropdown.classList.toggle('scale-100');
   }
 
-  function selectOption(option) {
+  function selectOptions(option) {
     // Update the dropdown label with the selected option
-    document.getElementById('dropdown').textContent = option;
+    document.getElementById('dropdownd').textContent = option;
 
     // Close the dropdown after selection
-    toggl('dropdow');
+    toggl('dropdows');
   }
